@@ -1273,7 +1273,7 @@ function agregarGifFav(gify) {
 
 searchTrendingGifos();
 async function searchTrendingGifos() {
-    let url = 'https:/api.giphy.com/v1/gifs/trending?api_key=' + api_key;
+    let url = 'https://api.giphy.com/v1/gifs/trending?api_key=' + api_key;
     const resp = await fetch(url);
     data = await resp.json();
 
