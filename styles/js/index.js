@@ -194,12 +194,12 @@ darkLight.addEventListener('click', () => {
             nuevoDiv.classList.add('borderMenu');
             darkLight.appendChild(nuevoDiv);
             tema = 'light';
-            if   (iconSearch2.src === "http://127.0.0.1:5500/assets/icon-search.svg") {
+            if   (iconSearch2.src === "https://jemazz.github.io/gifos/assets/icon-search.svg") {
                
                 iconSearch2.setAttribute('src', "assets/icon-search-mod-noc.svg");
              }
          
-           if  (iconSearch.src === "http://127.0.0.1:5500/assets/close.svg") {
+           if  (iconSearch.src === "https://jemazz.github.io/gifos/assets/close.svg") {
                iconSearch.setAttribute('src', "assets/close-modo-noct.svg"); 
             } else {
                 iconSearch.setAttribute('src', "assets/icon-search-mod-noc.svg"); 
@@ -219,14 +219,14 @@ darkLight.addEventListener('click', () => {
             nuevoDiv.classList.add('borderMenu');
             darkLight.appendChild(nuevoDiv);
             tema = 'dark';
-            if   (iconSearch2.src !== "http://127.0.0.1:5500/assets/icon-search-modo-noct.svg") { 
+            if   (iconSearch2.src !== "https://jemazz.github.io/gifos/assets/icon-search-modo-noct.svg") { 
                 iconSearch2.setAttribute('src', "assets/icon-search.svg");
              }
          
-           if  (iconSearch.src === "http://127.0.0.1:5500/assets/close-modo-noct.svg") {
+           if  (iconSearch.src === "https://jemazz.github.io/gifos/assets/close-modo-noct.svg") {
                iconSearch.setAttribute('src', "assets/close.svg"); 
             } else {
-                iconSearch.setAttribute('src', "http://127.0.0.1:5500/assets/icon-search.svg"); 
+                iconSearch.setAttribute('src', "https://jemazz.github.io/gifos/assets/icon-search.svg"); 
             }
             
             logo.setAttribute('src', "assets/logo-mobile.svg");
@@ -517,7 +517,7 @@ iconSearch.addEventListener('click', () => {
     if (searchBar.value == "") {
         return;
     }
-    if ((iconSearch.src == "https://jemazz.github.io/gifos/assets/close.svg") || (iconSearch.src == "http://127.0.0.1:5500/assets/close-modo-noct.svg")) {
+    if ((iconSearch.src == "https://jemazz.github.io/gifos/assets/close.svg") || (iconSearch.src == "https://jemazz.github.io/gifos/assets/close-modo-noct.svg")) {
         if (tema === "dark") {
             iconSearch.src = "assets/icon-search.svg";
         }
@@ -543,7 +543,7 @@ iconSearch.addEventListener('click', () => {
         return
     }
 
-    if ((iconSearch.src == "http://127.0.0.1:5500/assets/icon-search.svg") || (iconSearch.src == "http://127.0.0.1:5500/assets/icon-search-modo-noct.svg")) {
+    if ((iconSearch.src == "https://jemazz.github.io/gifos/assets/icon-search.svg") || (iconSearch.src == "https://jemazz.github.io/gifos/assets/icon-search-modo-noct.svg")) {
         buscar(searchBar.value);
         ocultarSugeridas();
 
