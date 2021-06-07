@@ -1305,7 +1305,7 @@ function agregarCtnTrendingGifos(trendingG) {
     imgTrendingG.classList.add('imagenesTrending');
     imgTrendingG.setAttribute('src', trendingG.images.downsized.url);
     gifosContScroll.appendChild(imgTrendingG);
-
+    console.log(imgTrendingG);
 }
 
 
