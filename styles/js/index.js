@@ -517,7 +517,7 @@ iconSearch.addEventListener('click', () => {
     if (searchBar.value == "") {
         return;
     }
-    if ((iconSearch.src == "http://127.0.0.1:5500/assets/close.svg") || (iconSearch.src == "http://127.0.0.1:5500/assets/close-modo-noct.svg")) {
+    if ((iconSearch.src == "https://jemazz.github.io/gifos/assets/close.svg") || (iconSearch.src == "http://127.0.0.1:5500/assets/close-modo-noct.svg")) {
         if (tema === "dark") {
             iconSearch.src = "assets/icon-search.svg";
         }
