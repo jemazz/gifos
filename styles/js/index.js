@@ -194,12 +194,12 @@ darkLight.addEventListener('click', () => {
             nuevoDiv.classList.add('borderMenu');
             darkLight.appendChild(nuevoDiv);
             tema = 'light';
-            if   (iconSearch2.src === "https://jemazz.github.io/gifos/assets/icon-search.svg") {
+            if   (iconSearch2.src === "/assets/icon-search.svg") {
                
                 iconSearch2.setAttribute('src', "assets/icon-search-mod-noc.svg");
              }
          
-           if  (iconSearch.src === "https://jemazz.github.io/gifos/assets/close.svg") {
+           if  (iconSearch.src === "/assets/close.svg") {
                iconSearch.setAttribute('src', "assets/close-modo-noct.svg"); 
             } else {
                 iconSearch.setAttribute('src', "assets/icon-search-mod-noc.svg"); 
@@ -219,14 +219,14 @@ darkLight.addEventListener('click', () => {
             nuevoDiv.classList.add('borderMenu');
             darkLight.appendChild(nuevoDiv);
             tema = 'dark';
-            if   (iconSearch2.src !== "https://jemazz.github.io/gifos/assets/icon-search-modo-noct.svg") { 
+            if   (iconSearch2.src !== "/assets/icon-search-modo-noct.svg") { 
                 iconSearch2.setAttribute('src', "assets/icon-search.svg");
              }
          
-           if  (iconSearch.src === "https://jemazz.github.io/gifos/assets/close-modo-noct.svg") {
+           if  (iconSearch.src === "/assets/close-modo-noct.svg") {
                iconSearch.setAttribute('src', "assets/close.svg"); 
             } else {
-                iconSearch.setAttribute('src', "https://jemazz.github.io/gifos/assets/icon-search.svg"); 
+                iconSearch.setAttribute('src', "/assets/icon-search.svg"); 
             }
             
             logo.setAttribute('src', "assets/logo-mobile.svg");
@@ -517,7 +517,7 @@ iconSearch.addEventListener('click', () => {
     if (searchBar.value == "") {
         return;
     }
-    if ((iconSearch.src == "https://jemazz.github.io/gifos/assets/close.svg") || (iconSearch.src == "https://jemazz.github.io/gifos/assets/close-modo-noct.svg")) {
+    if ((iconSearch.src.endsWith ("assets/close.svg") ) || (iconSearch.src.endsWith ("assets/close-modo-noct.svg") )) {
         if (tema === "dark") {
             iconSearch.src = "assets/icon-search.svg";
         }
@@ -543,7 +543,7 @@ iconSearch.addEventListener('click', () => {
         return
     }
 
-    if ((iconSearch.src == "https://jemazz.github.io/gifos/assets/icon-search.svg") || (iconSearch.src == "https://jemazz.github.io/gifos/assets/icon-search-modo-noct.svg")) {
+    if ((iconSearch.src.endsWith ("assets/icon-search.svg")) || (iconSearch.src.endsWith ("assets/icon-search-modo-noct.svg"))){
         buscar(searchBar.value);
         ocultarSugeridas();
 
@@ -1273,15 +1273,16 @@ function agregarGifFav(gify) {
 
 searchTrendingGifos();
 async function searchTrendingGifos() {
+   
     let url = 'https://api.giphy.com/v1/gifs/trending?api_key=' + api_key;
     const resp = await fetch(url);
     data = await resp.json();
-
+    console.log(data)
 
     for (let i = 0; i < data.data.length; i++) {
         agregarCtnTrendingGifos(data.data[i]);
     }
-    var ver22 = data.data.length;
+  
 
 }
 
@@ -1289,9 +1290,11 @@ var gifosContScroll = document.getElementById('gifosContScroll');
 
 async function agregarGifos(index) {
     if (!arrayVideos.length) {
+        console.log('vacio')
         return;
     }
     let url = 'https://api.giphy.com/v1/gifs?api_key=' + api_key + '&ids=' + arrayVideos[index];
+    console.log('entra')
     const resp = await fetch(url);
     data = await resp.json();
     agregarGifs(data.data[0]);
@@ -1305,7 +1308,7 @@ function agregarCtnTrendingGifos(trendingG) {
     imgTrendingG.classList.add('imagenesTrending');
     imgTrendingG.setAttribute('src', trendingG.images.downsized.url);
     gifosContScroll.appendChild(imgTrendingG);
-    console.log(imgTrendingG);
+
 }
 
 
@@ -1510,7 +1513,7 @@ async function subirGifo(file) {
     })
         .then(response => response.json())
         .then(data => {
-       /*  var */ arrayVideos = JSON.parse(localStorage.getItem('arrayVideos') || "[]");
+            arrayVideos = JSON.parse(localStorage.getItem('arrayVideos') || "[]");
             arrayVideos.push(data.data.id);
             localStorage.setItem('arrayVideos', JSON.stringify(arrayVideos));
             let a = JSON.parse(localStorage.getItem('arrayVideos'));
