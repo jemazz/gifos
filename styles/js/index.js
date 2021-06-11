@@ -755,7 +755,11 @@ function agregarCtn(gify) {
                 ctnAmpG.appendChild(ampliar);
                 closeAmpl = document.createElement('img');
                 closeAmpl.classList.add('closeAmpl');
-                closeAmpl.setAttribute('src', "assets/close.svg");
+                  if(tema=="dark"){  
+                    closeAmpl.setAttribute('src','assets/close.svg');
+                } else {
+                    closeAmpl.setAttribute('src','assets/close-modo-noct.svg');
+                }
                 ctnAmpG.appendChild(closeAmpl);
                 gifosCont.style.display = "none";
                 btnVerMasFavGif.style.display = "none";
