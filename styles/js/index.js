@@ -1,4 +1,6 @@
 const api_key = "ttHCNKtdglTZhTPQlaGTrHAHe08GlSmI";
+var sug=false;
+let closeAmpl;
 let iconSearch2 = document.createElement('img');
 let ctnSearch = document.getElementById('ctnSearch');
 let ctnSearchBar = document.getElementById('ctnSearchBar');
@@ -79,16 +81,10 @@ let flagComenzar = false;
 var gifFav = document.querySelector('.gifFav');
 var gifFavID = document.getElementById('gifFav');
 
+let ctnAmp = document.getElementById('ctnAmpG');
 
-var media = matchMedia('(min-width: 1440px)');
+var media = matchMedia('(min-width: 1366px)');
 
-changeSize = mql => {
-    if (mql.matches == true) {
-        console.log('si')
-    }
-}
-media.addEventListener("change", changeSize);
-changeSize(media);
 
 varbuttonSliderRight.addEventListener('click', () => {
     if (marcaRight == 0) {
@@ -193,22 +189,39 @@ darkLight.addEventListener('click', () => {
             nuevoDiv = document.createElement('div');
             nuevoDiv.classList.add('borderMenu');
             darkLight.appendChild(nuevoDiv);
+
+            if ((ctnAmp)||(ctnAmpCreados)) {
+                closeAmpl.setAttribute('src', 'assets/close-modo-noct.svg');
+            }
+            if (crearG==true){
+                cinta1.setAttribute('src', 'assets/element_cinta1-modo-noc.svg');
+                cinta2.setAttribute('src', 'assets/element_cinta2-modo-noc.svg');
+                crearGifo.setAttribute('src','assets/CTA-crear-gifo-active-modo-noc.svg');
+                cinta.setAttribute('src', 'assets/pelicula-modo-noc.svg');
+            } 
+
+            if (sug==true) {
+                ctnSugeridas.style.background= '#37383C';
+                ctnSugeridas.style.border= '1px solid #FFFFFF';
+                ctnSugeridas.style.color = '#9CAFC3';
+            }
+           
+         
             tema = 'light';
-            if   (iconSearch2.src === "/assets/icon-search.svg") {
-               
+            if  (iconSearch2.src.endsWith ("assets/icon-search.svg") ){
                 iconSearch2.setAttribute('src', "assets/icon-search-mod-noc.svg");
              }
          
-           if  (iconSearch.src === "/assets/close.svg") {
+            if  (iconSearch.src.endsWith ("assets/close.svg")) {
                iconSearch.setAttribute('src', "assets/close-modo-noct.svg"); 
             } else {
                 iconSearch.setAttribute('src', "assets/icon-search-mod-noc.svg"); 
             }
-            
+
             logo.setAttribute('src', "assets/logo-mobile-modo-noct.svg");
             burger.setAttribute('src', "assets/burger-modo-noct.svg");
             cruz.setAttribute('src', "assets/close-modo-noct.svg");
-            crearGifo.setAttribute('src', "assets/CTA-crear-gifo-modo-noc.svg");
+            crearGifo.setAttribute('src', "assets/CTA-crear-gifo-active-modo-noc.svg");
             varbuttonSliderRight.setAttribute('src', "assets/button-slider-right-md-noct.svg");
             varbuttonSliderLeft.setAttribute('src', "assets/button-slider-left-md-noct.svg");
             break;
@@ -218,23 +231,41 @@ darkLight.addEventListener('click', () => {
             nuevoDiv = document.createElement('div');
             nuevoDiv.classList.add('borderMenu');
             darkLight.appendChild(nuevoDiv);
+            if (ctnAmp) { 
+                closeAmpl.setAttribute('src', 'assets/close.svg');
+            }
+            if (ctnAmpCreados) { 
+                closeAmpl.setAttribute('src', 'assets/close.svg');
+            }
+            if (crearG==true){
+                cinta1.setAttribute('src', 'assets/element_cinta1.svg');
+                cinta2.setAttribute('src', 'assets/element_cinta2.svg');
+                crearGifo.setAttribute('src','assets/button-crear-gifo.svg');
+                cinta.setAttribute('src', 'assets/pelicula.svg');
+            } 
+            if (sug==true) {
+                ctnSugeridas.style.background= 'white';
+                ctnSugeridas.style.border= '1px solid #572ee5';
+                ctnSugeridas.style.color = '#9CAFC3';
+            }
+         
             tema = 'dark';
-            if   (iconSearch2.src !== "/assets/icon-search-modo-noct.svg") { 
+            
+            if  (iconSearch2.src.endsWith ("assets/icon-search-modo-noct.svg")) { 
                 iconSearch2.setAttribute('src', "assets/icon-search.svg");
              }
-         
-           if  (iconSearch.src === "/assets/close-modo-noct.svg") {
-               iconSearch.setAttribute('src', "assets/close.svg"); 
-            } else {
-                iconSearch.setAttribute('src', "/assets/icon-search.svg"); 
-            }
-            
+             if  (iconSearch.src.endsWith ("assets/close-modo-noct.svg")) {
+                iconSearch.setAttribute('src', "assets/close.svg"); 
+             } else {
+                 iconSearch.setAttribute('src', "/assets/icon-search.svg"); 
+             }
+
             logo.setAttribute('src', "assets/logo-mobile.svg");
             cruz.setAttribute('src', "assets/close.svg");
             burger.setAttribute('src', "assets/burger.svg");
             crearGifo.setAttribute('src', "assets/button-crear-gifo.svg");
             varbuttonSliderRight.setAttribute('src', "assets/Button-Slider-right.svg");
-            varbuttonSliderLeft.setAttribute('src', "button-slider-left.svg");
+            varbuttonSliderLeft.setAttribute('src', "assets/button-slider-left.svg");
             break;
     }
 
@@ -244,17 +275,34 @@ darkLight.addEventListener('click', () => {
 titletrendingGifos = document.getElementById('titletrendingGifos');
 pTGifos = document.getElementById('pTGifos');
 
+let crearG=false;
 crearGifo.addEventListener('click', () => {
+    flagComenzar=false;
+    crearG=true;
+    gifosCreadosCont.style.display="none";
+    gifosCont.style.display="none";
+
     gifosCont.innerHTML = "";
     gifosCreadosCont.innerHTML = "";
     video.style.display = "none";
 
-
     btnVerMasGifos.style.display = "none";
     btnVerMasFavGif.style.display = "none";
 
-
     gifSinCont.style.display = "none";
+
+    ctnAmpG.innerHTML = "";
+    ctnAmpG.style.display = "none";
+    ctnAmp.innerHTML = "";
+    ctnAmp.style.display = "none";
+    ctnAmpCreados.innerHTML = "";
+    ctnAmpCreados.style.display = "none";
+    btnGrabar.style.display = "none";
+    btnFinalizar.style.display = "none";
+    btnSubirGifo.style.display = "none";
+    CtnRepetirCaptura.style.display = "none";
+    headerSearch.innerHTML = ""; 
+    
     if (check) {
         check.style.display = "none";
     }
@@ -263,10 +311,8 @@ crearGifo.addEventListener('click', () => {
         gifoOk.style.display = "none";
     }
 
-
     document.getElementById('favorites').classList.remove('clickStyleFavDesk');
     document.getElementById('gifos').classList.remove('clickStyleFavDesk');
-    crearGifo.setAttribute('src', "assets/CTA-crear-gifo-hover.svg");
     gralFavorites.style.display = "none";
     ctnGral.style.display = "none";
     trending.style.display = "none";
@@ -280,15 +326,31 @@ crearGifo.addEventListener('click', () => {
     paso1.style.display = "none";
     p3.style.background = 'white';
     p3.style.color = '#572EE5';
-
+    p1.style.color = '#572EE5';
+    p2.style.color = '#572EE5';
     p2.style.background = 'white';
     p1.style.background = 'white';
 
-
-
     clickFlag = true;
-})
 
+    if (tema=="dark") {
+        crearGifo.setAttribute('src', "assets/CTA-crear-gifo-active.svg");
+        cinta1.setAttribute('src', 'assets/element_cinta1.svg');
+        cinta2.setAttribute('src', 'assets/element_cinta2.svg');
+        cinta.setAttribute('src', 'assets/pelicula.svg');
+    } 
+
+    if (tema=="light") {
+        crearGifo.setAttribute('src', "assets/CTA-crear-gifo-active-modo-noc.svg");
+        cinta1.setAttribute('src', 'assets/element_cinta1-modo-noc.svg');
+        cinta2.setAttribute('src', 'assets/element_cinta2-modo-noc.svg');
+        cinta.setAttribute('src', 'assets/pelicula-modo-noc.svg');
+        
+    }
+
+
+
+})
 
 var ctnGralCrearGifo = document.getElementById('ctnGralCrearGifo');
 var camara = document.createElement('img');
@@ -301,13 +363,12 @@ cinta2.setAttribute('id', 'cinta2');
 camara.setAttribute('id', 'camara');
 camara.setAttribute('src', "assets/element-camara.svg");
 luz.setAttribute('src', 'assets/element-luz-camara.svg');
-cinta1.setAttribute('src', 'assets/element_cinta1.svg');
-cinta2.setAttribute('src', 'assets/element_cinta2.svg');
-var ctnCentralCrearGifo = document.getElementById('ctnCentralCrearGifo');
+
+var ctnCentralCrearGifo = document.getElementById('ctnCentralCrearGifo');//ver repetido
 
 var cinta = document.createElement('img');
-cinta.setAttribute('src', "assets/pelicula.svg");
 cinta.setAttribute('id', 'cinta');
+
 ctnGralCamara.appendChild(camara);
 ctnGralCamara.appendChild(luz);
 ctnGralCamara.appendChild(cinta1);
@@ -317,8 +378,6 @@ ctnGralCrearGifo.appendChild(cinta);
 
 let searchBar = document.getElementById('searchBar');
 let gifCtn = document.getElementById('gifCtn');
-
-
 
 searchBar.addEventListener('keyup', () => {
     if (event.which !== 13 || event.keyCode != 13) {
@@ -357,6 +416,7 @@ async function sugerir(palabra) {
     data = await resp.json();
 
     if (data.data.length !== 0) {
+        sug=true;
         ctnSugeridas = document.createElement('ul');
         ctnSugeridas.setAttribute('id', 'ctnSugeridas');
         ctnSugeridas.innerHTML = searchBar.value;
@@ -375,8 +435,20 @@ async function sugerir(palabra) {
             elemento.setAttribute('id', 'elemento')
             elemento.innerHTML = element;
             ctnSugeridas.appendChild(elemento);
-            ctnSearch.appendChild(ctnSugeridas);
+            ctnSearch.appendChild(ctnSugeridas); 
             iconSearch.style.zIndex = '5003';
+
+
+           if (tema === 'dark') {
+                iconSearch.setAttribute('src', "assets/icon-search.svg");
+            } else if (tema === 'light') {
+                iconSearch.setAttribute('src', "assets/icon-search-modo-noct.svg");
+                ctnSugeridas.style.background= '#37383C';
+                ctnSugeridas.style.border= '1px solid #FFFFFF';
+                ctnSugeridas.style.color = '#9CAFC3';
+            }
+ 
+           
         }
 
 
@@ -390,6 +462,7 @@ async function sugerir(palabra) {
             ocultarSugeridas();
         })
     }
+
 }
 
 
@@ -492,13 +565,16 @@ function resetSearch() {
     gifosCont.style.display = "none";
     headerSearch.innerHTML = "";
     gifosCont.innerHTML = "";
-    const media = matchMedia('(min-width: 1440px)');
+    const media = matchMedia('(min-width: 1366px)');
     changeSize = mql => {
         mql.matches && searchBar.value != ""
             ? iconSearch2.style.opacity = 1 : iconSearch2.style.opacity = 0
     }
+    if  (media >= "1224px"){
+        changeSize(media);
+    }
     media.addEventListener("change", changeSize);
-    changeSize(media);;
+    changeSize(media);
     iconSearch2.style.left = '21px';
     iconSearch2.style.width = '20px';
     menuBurger.setAttribute.display = "contents";
@@ -519,6 +595,7 @@ iconSearch.addEventListener('click', () => {
     }
     if ((iconSearch.src.endsWith ("assets/close.svg") ) || (iconSearch.src.endsWith ("assets/close-modo-noct.svg") )) {
         if (tema === "dark") {
+        
             iconSearch.src = "assets/icon-search.svg";
         }
         if (tema === "light") {
@@ -581,9 +658,7 @@ let nroGifCreados = 0;
 //agrega los gifos del resultado de busqueda
 function agregarCtn(gify) {
     $template.querySelector('img').setAttribute('src', gify.images.downsized.url);
-
-    const media = matchMedia('(min-width: 1440px)');
-
+    const media = matchMedia('(min-width: 1366px)');
     changeSize = mql => {
         if (mql.matches == true) {
             ctnIconSearchGifos = $template.querySelector('div');
@@ -653,7 +728,7 @@ function agregarCtn(gify) {
                     let response = await fetch(imgURL);
                     let file = await response.blob();
                     a.download = 'myGif';
-                    a.href = window.URL.createObjectURL(file);
+                    a.href = URL.createObjectURL(file);
                     a.dataset.downloadurl = ['application/octet-stream', a.download, a.href].join(':');
                     a.click();
                 };
@@ -665,12 +740,11 @@ function agregarCtn(gify) {
 
             ctnAmpG.style.display = "none";
 
-            let closeAmpl;
+     
             icnAmpliar.addEventListener('click', () => {
                 icnAmpliar.setAttribute('src', "assets/icon-max-hover.svg");
                 ctnAmpG.style.display = "block";
                 ctnAmpG.style.height = "385px";
-
                 ctnAmpG.style.marginTop = "0px";
 
                 let imgAmp = gify.images.downsized.url;
@@ -728,6 +802,9 @@ function mostrarSinResultado(texto) {
 
 checkBurger.addEventListener('click', () => {
     let statusCheck = document.getElementById('checkBurger').checked;
+    if (sug==true){
+        ctnSearch.style.display = "none";
+    }
     switch (statusCheck) {
         case (true):
             menuBurger.style.display = "contents";
@@ -737,17 +814,25 @@ checkBurger.addEventListener('click', () => {
                 gralFavorites.style.display = "none";
                 ctnGral.style.display = "contents";
                 trending.style.display = "contents";
+                ctnSearch.style.display = "flex";
+                if (tema==="dark") {
+                    iconSearch.setAttribute('src', "assets/icon-search.svg");
+                } else {
+                    iconSearch.setAttribute('src', 'assets/icon-search-modo-noct.svg')
+                }
             } else if ((gralMisGifos.style.display == "contents")) {
                 gralMisGifos.style.display = "none";
                 gifosCreadosCont.style.display = "none";
                 ctnGral.style.display = "contents";
                 trending.style.display = "contents";
+                ctnSearch.style.display = "flex";
             }
             break;
         case (false):
             menuBurger.style.display = "none";
             burger.style.opacity = 1;
             close.style.opacity = 0;
+            ctnSearch.style.display = "flex";
     }
 })
 let verFav;
@@ -761,8 +846,8 @@ favorites.addEventListener('click', () => {
     gifSinCont.style.display = "none";
 
     let arrayFav = JSON.parse(localStorage.getItem('arrayFav') || "[]");
-    const media = matchMedia('(min-width: 1440px)');
-
+    const media = matchMedia('(min-width: 1366px)');
+   
     changeSize = mql => {
         if (mql.matches == true) {
             if (!arrayFav.length) {
@@ -804,15 +889,14 @@ favorites.addEventListener('click', () => {
                     crearGifo.setAttribute('src', "assets/button-crear-gifo.svg");
                     gifFav.style.display = "grid";
                     ctnAmpG.innerHTML = "";
-                    ctnAmpG.style.display = "none";
                     ctnAmpCreados.innerHTML = "";
                     ctnAmpCreados.style.display = "none";
+                    
                     break;
                 case ("none"):
                     menuBurger.style.display = "contents";
                     document.getElementById('favorites').classList.add('clickStyleFavDesk');
                     gralFavorites.style.display = "contents";
-                    crearGifo.setAttribute('src', "assets/button-crear-gifo.svg");
                     trendingGifos.style.display = "flex";
                     ctnGral.style.display = "none";
                     trending.style.display = "none";
@@ -820,13 +904,20 @@ favorites.addEventListener('click', () => {
                     gralMisGifos.style.display = "";
                     ctnGralCrearGifo.style.display = "none";
                     ctnSeparador.style.display = "none";
+                    crearGifo.setAttribute('src', "assets/button-crear-gifo.svg");
+                    gifFav.style.display = "grid";
+                    ctnAmpG.innerHTML = "";
                     ctnAmpCreados.innerHTML = "";
                     ctnAmpCreados.style.display = "none";
-
                     break;
+
                 case ("contents"):
                     menuBurger.style.display = "contents";
-                    iconSearch.src = "assets/icon-search.svg";
+                    if (tema === 'dark') {
+                        iconSearch.setAttribute('src', "assets/icon-search.svg");
+                    } else if (tema === 'light') {
+                        iconSearch.setAttribute('src', "assets/icon-search-modo-noct.svg");
+                    }
                     if (document.getElementById('ico')) {
                         (document.getElementById('ico')).style.opacity = 0;
                     }
@@ -837,14 +928,15 @@ favorites.addEventListener('click', () => {
                     ctnGral.style.display = "contents";
                     trending.style.display = "contents";
                     gifCtn.innerHTML = "";
-                    gifosCont.style.display = "";
                     trendingGifos.style.display = "flex";
                     ctnGralCrearGifo.style.display = "none";
                     ctnSeparador.style.display = "none";
-                    gifosCreadosCont.style.display = "none";
-                    btnVerMasFavGif.style.display = "none";
+               
                     ctnAmpG.innerHTML = "";
                     ctnAmpG.style.display = "none";
+                       
+                    gifSinCont.style.display="";
+                    gifosCont.style.display = "none";
 
                     break;
             }
@@ -873,7 +965,8 @@ let favActive;
 
 function agregarCtnFav(element) {
     $templateFav.querySelector('img').setAttribute('src', element);
-    const media = matchMedia('(min-width: 1440px)');
+    const media = matchMedia('(min-width: 1366px)');
+    
 
     changeSize = mql => {
         if (mql.matches == true) {
@@ -960,8 +1053,6 @@ function agregarCtnFav(element) {
                     verFav = JSON.parse(localStorage.getItem('arrayFav'));
                 }
 
-
-
             })
 
             let icnDescargar1 = $clone1.getElementById('icnDescargar1');
@@ -976,7 +1067,7 @@ function agregarCtnFav(element) {
                     let response = await fetch(imgURL);
                     let file = await response.blob();
                     a.download = 'myGif';
-                    a.href = window.URL.createObjectURL(file);
+                    a.href = URL.createObjectURL(file);
                     a.dataset.downloadurl = ['application/octet-stream', a.download, a.href].join(':');
                     a.click();
                 };
@@ -984,9 +1075,9 @@ function agregarCtnFav(element) {
             })
 
             let icnAmpliar1 = $clone1.getElementById('icnAmpliar1');
-            let ctnAmp = document.getElementById('ctnAmp');
+       
             ctnAmp.style.display = "none";
-            let closeAmpl;
+    
             icnAmpliar1.addEventListener('click', () => {
                 icnAmpliar1.setAttribute('src', "assets/icon-max-hover.svg");
                 ctnAmp.style.display = "block";
@@ -998,7 +1089,12 @@ function agregarCtnFav(element) {
                 ctnAmp.appendChild(ampliar);
                 closeAmpl = document.createElement('img');
                 closeAmpl.classList.add('closeAmpl');
-                closeAmpl.setAttribute('src', "assets/close.svg");
+                if(tema=="dark"){  
+                    closeAmpl.setAttribute('src','assets/close.svg');
+                } else {
+                    closeAmpl.setAttribute('src','assets/close-modo-noct.svg');
+                }
+
                 ctnAmp.appendChild(closeAmpl);
                 gifFav.style.display = "none";
                 btnVerMasFavGif.style.display = "none";
@@ -1032,11 +1128,15 @@ gifos.addEventListener('click', () => {
             agregarGifos(index);
 
         }
-
     }
 
     let visibilityGif = (document.getElementById('gralMisGifos').style.display);
-    const media = matchMedia('(min-width: 1440px)');
+    const media = matchMedia('(min-width: 1366px)');
+
+    gralMisGifos.style.display="contents";
+    gifosCreadosCont.style.display="grid";
+    gifosCont.style.display="flex"; 
+
     gifosCont.innerHTML = "";
     gifosCreadosCont.innerHTML = "";
     headerSearch.style.display = "none";
@@ -1078,11 +1178,15 @@ gifos.addEventListener('click', () => {
                 case ("contents"):
                     gifosCont.style.display = "none";
                     menuBurger.style.display = "contents";
-                    iconSearch.src = "assets/icon-search.svg";
+                    if (tema === 'dark') {
+                        iconSearch.setAttribute('src', "assets/icon-search.svg");
+                    } else if (tema === 'light') {
+                        iconSearch.setAttribute('src', "assets/icon-search-modo-noct.svg");
+                    }
                     if (document.getElementById('ico')) {
                         (document.getElementById('ico')).style.opacity = 0;
                     }
-
+    
                     document.getElementById('gifos').classList.remove('clickStyleFavDesk');
                     gralMisGifos.style.display = "";
                     gifSinCont.style.display = "";
@@ -1097,7 +1201,6 @@ gifos.addEventListener('click', () => {
                     break;
             }
         } else {
-
             menuBurger.style.display = "none";
             checkBurger.checked = false;
             gralMisGifos.style.display = "contents";
@@ -1125,7 +1228,8 @@ function agregarGifs(gify) {
 
     let a = gify.images.downsized.url;
     $templateGifosCreados.querySelector('img').setAttribute('src', gify.images.downsized.url);
-    const media = matchMedia('(min-width: 1440px)');
+    const media = matchMedia('(min-width: 1366px)');
+    
     let ctnIconSearchGifosCreados = $templateGifosCreados.querySelector('div');
     ctnIconSearchGifosCreados.style.display = "none";
     changeSize = mql => {
@@ -1198,7 +1302,7 @@ function agregarGifs(gify) {
                     let response = await fetch(imgURL);
                     let file = await response.blob();
                     a.download = 'myGif';
-                    a.href = window.URL.createObjectURL(file);
+                    a.href = URL.createObjectURL(file);
                     a.dataset.downloadurl = ['application/octet-stream', a.download, a.href].join(':');
                     a.click();
                 };
@@ -1210,7 +1314,6 @@ function agregarGifs(gify) {
 
             ctnAmpCreados.style.display = "none";
 
-            let closeAmpl;
             icnAmpliar2.addEventListener('click', () => {
                 icnAmpliar2.setAttribute('src', "assets/icon-max-hover.svg");
                 ctnAmpCreados.style.display = "block";
@@ -1226,7 +1329,12 @@ function agregarGifs(gify) {
                 ctnAmpCreados.appendChild(ampliar);
                 closeAmpl = document.createElement('img');
                 closeAmpl.classList.add('closeAmpl');
-                closeAmpl.setAttribute('src', "assets/close.svg");
+                if(tema=="dark"){  
+                    closeAmpl.setAttribute('src','assets/close.svg');
+                } else {
+                    closeAmpl.setAttribute('src','assets/close-modo-noct.svg');
+                }
+
                 ctnAmpCreados.appendChild(closeAmpl);
                 gifosCreadosCont.style.display = "none";
                 btnVerMasGifos.style.display = "none";
@@ -1254,7 +1362,8 @@ function agregarGifs(gify) {
 
 
 function agregarGifFav(gify) {
-    const media = matchMedia('(min-width: 1440px)');
+    const media = matchMedia('(min-width: 1366px)');
+   
 
     changeSize = mql => {
         if (mql.matches == true) {
@@ -1277,8 +1386,7 @@ async function searchTrendingGifos() {
     let url = 'https://api.giphy.com/v1/gifs/trending?api_key=' + api_key;
     const resp = await fetch(url);
     data = await resp.json();
-    console.log(data)
-
+    
     for (let i = 0; i < data.data.length; i++) {
         agregarCtnTrendingGifos(data.data[i]);
     }
@@ -1290,11 +1398,9 @@ var gifosContScroll = document.getElementById('gifosContScroll');
 
 async function agregarGifos(index) {
     if (!arrayVideos.length) {
-        console.log('vacio')
         return;
     }
     let url = 'https://api.giphy.com/v1/gifs?api_key=' + api_key + '&ids=' + arrayVideos[index];
-    console.log('entra')
     const resp = await fetch(url);
     data = await resp.json();
     agregarGifs(data.data[0]);
