@@ -569,7 +569,7 @@ footer {
     }
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 1366px) {
     * {
         margin: 0px;
         padding: 0px;
@@ -592,7 +592,7 @@ footer {
     }
     .ctnBurger {
         position: relative;
-        min-width: 1440px;
+        min-width: 1024px;
         min-height: 90px;
         height: 90px;
         width: 100%;
@@ -689,7 +689,7 @@ footer {
         top: 366px;
         margin-top: 121px;
         padding-left: 33px;
-        background-color: white;
+       
     }
 
     #elemento {
@@ -698,7 +698,7 @@ footer {
         font-family: $font-family-search-compartir;
         font-size: $font-size-m;
         font-weight: $regular;
-        color: $colour-search-desk;
+        color:$colour-search-desk; 
     }
 
     .iconSearch {
@@ -856,7 +856,7 @@ footer {
         display: initial;
         width: 40px;
         height: 40px;
-        margin-left: 94px;
+        margin-left: 48px;
         margin-top: 117px;
     }
 
@@ -864,7 +864,7 @@ footer {
         display: initial;
         width: 40px;
         height: 40px;
-        margin-right: 94px;
+        margin-right: 48px;
         margin-top: 117px;
     }
 
@@ -896,7 +896,6 @@ footer {
     .iconos {
         text-align: center;
         padding-top: 0px;
-        height: 19px;
     }
     .iFace,
     .iTwi {
@@ -909,8 +908,8 @@ footer {
         line-height: 20px;
         margin-top: 0px;
         margin-bottom: 0px;
-        margin-right: 158px;
-        height: 19px;
+        margin-right: 38px;
+       
     }
 
     .imgFavorites {
@@ -1010,7 +1009,7 @@ footer {
     margin-left: 241.8px;
 }
 #camara {
-    margin-top: 162px;
+    margin-top: 215px;
     height: 106.8px;
     opacity: 100%;
 }
@@ -1024,13 +1023,13 @@ footer {
 #cinta1 {
     position: absolute;
     width: 45.9px;
-    top: 223.3px;
+    top:272px;
     left: 228px;
 }
 #cinta2 {
     position: absolute;
     width: 63.6px;
-    top: 208.6px;
+    top:254.6px;
     left: 277px;
 }
 
@@ -1045,7 +1044,7 @@ footer {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: auto;
+    margin-top: 60px;
     width: 688px;
     height: 390px;
     border: 1px solid;
@@ -1097,7 +1096,7 @@ footer {
 #cinta {
     position: absolute;
     margin-left: 1219px;
-    margin-top: 412px;
+    margin-top: 483px;
     width: 87.2px;
 }
 
@@ -1135,11 +1134,11 @@ footer {
     align-items: flex-end;
 }
 #repetirCaptura {
-    position: absolute;
+ // position: absolute;
     font-weight: $bold;
     font-size: $font-size-xxs;
     line-height: 16px;
-    right: 293px;
+    right: 205px;
     top: 559px;
 }
 .subRepetir {
@@ -1152,9 +1151,8 @@ footer {
 #ctnAmpG,
 #ctnAmpCreados {
     position: relative;
-    margin-top: -72px;
+    margin-top: 0px;
     width: 695px;
-    //height: 385px;
     display: block;
     margin-left: auto;
     margin-right: auto;
