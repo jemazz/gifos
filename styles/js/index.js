@@ -190,9 +190,19 @@ darkLight.addEventListener('click', () => {
             nuevoDiv.classList.add('borderMenu');
             darkLight.appendChild(nuevoDiv);
 
-            if ((ctnAmp)||(ctnAmpCreados)) {
+            if (ctnAmp == true) {
                 closeAmpl.setAttribute('src', 'assets/close-modo-noct.svg');
             }
+
+            if (ctnAmpG.style.display == "block") {
+                closeAmpl.setAttribute('src', 'assets/close-modo-noct.svg');
+            }
+
+            if (ctnAmpCreados.style.display == "block"){
+                closeAmpl.setAttribute('src', 'assets/close-modo-noct.svg');
+            }
+
+
             if (crearG==true){
                 cinta1.setAttribute('src', 'assets/element_cinta1-modo-noc.svg');
                 cinta2.setAttribute('src', 'assets/element_cinta2-modo-noc.svg');
@@ -209,13 +219,13 @@ darkLight.addEventListener('click', () => {
          
             tema = 'light';
             if  (iconSearch2.src.endsWith ("assets/icon-search.svg") ){
-                iconSearch2.setAttribute('src', "assets/icon-search-mod-noc.svg");
+                iconSearch2.setAttribute('src', "assets/icon-search-modo-noct.svg");
              }
          
             if  (iconSearch.src.endsWith ("assets/close.svg")) {
                iconSearch.setAttribute('src', "assets/close-modo-noct.svg"); 
             } else {
-                iconSearch.setAttribute('src', "assets/icon-search-mod-noc.svg"); 
+                iconSearch.setAttribute('src', "assets/icon-search-modo-noct.svg"); 
             }
 
             logo.setAttribute('src', "assets/logo-mobile-modo-noct.svg");
@@ -231,10 +241,16 @@ darkLight.addEventListener('click', () => {
             nuevoDiv = document.createElement('div');
             nuevoDiv.classList.add('borderMenu');
             darkLight.appendChild(nuevoDiv);
-            if (ctnAmp) { 
+            if (ctnAmpG.style.display == "block") {
                 closeAmpl.setAttribute('src', 'assets/close.svg');
             }
-            if (ctnAmpCreados) { 
+
+
+            if (ctnAmp == true) {
+                closeAmpl.setAttribute('src', 'assets/close.svg');
+            }
+
+            if (ctnAmpCreados.style.display == "block"){
                 closeAmpl.setAttribute('src', 'assets/close.svg');
             }
             if (crearG==true){
@@ -595,7 +611,6 @@ iconSearch.addEventListener('click', () => {
     }
     if ((iconSearch.src.endsWith ("assets/close.svg") ) || (iconSearch.src.endsWith ("assets/close-modo-noct.svg") )) {
         if (tema === "dark") {
-        
             iconSearch.src = "assets/icon-search.svg";
         }
         if (tema === "light") {
@@ -607,6 +622,8 @@ iconSearch.addEventListener('click', () => {
         headerSearch.innerHTML = "";
         gifCtn.innerHTML = "";
         ctnSugeridas.innerHTML = "";
+        ctnAmpG.style.display="none";
+        ctnAmpG.innerHTML="";
         for (let index = 0; index < uls.length; index++) {
             const element = uls[index];
             element.style.display = "none";
@@ -754,12 +771,13 @@ function agregarCtn(gify) {
                 ampliar.setAttribute('src', imgAmp);
                 ctnAmpG.appendChild(ampliar);
                 closeAmpl = document.createElement('img');
-                closeAmpl.classList.add('closeAmpl');
-                  if(tema=="dark"){  
+                closeAmpl.classList.add('closeAmpl');   
+                if(tema=="dark"){  
                     closeAmpl.setAttribute('src','assets/close.svg');
                 } else {
                     closeAmpl.setAttribute('src','assets/close-modo-noct.svg');
                 }
+               
                 ctnAmpG.appendChild(closeAmpl);
                 gifosCont.style.display = "none";
                 btnVerMasFavGif.style.display = "none";
